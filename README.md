@@ -23,25 +23,25 @@ We personally take efforts by helping you in design and customise every aspect o
 		
 	
 # SHADEBOOK HOME[ Runs on Port 4000 ]:
-Run this project : >> nodemon server.js
-	a) This is the platform where you can search for other user public profiles and view it.
-	b) You can use the contact us page.
-		[ Collection will look like below for "contacts" ]
-		![contacts](screenshots/contacts_collection.JPG)
-	c) Login/Register will internally take you to port:3000[shadebook account]
+Run this project : >> nodemon server.js\
+	a) This is the platform where you can search for other user public profiles and view it. \
+	b) You can use the contact us page. \
+		[ Collection will look like below for "contacts" ] \
+		![contacts](screenshots/contacts_collection.JPG) \
+	c) Login/Register will internally take you to port:3000[shadebook account] \
     
 # SHADEBOOK ACCOUNT [ Runs on Port 3000 ]:
-Run this project : >>nodemon server.js
-	a) Actual Login/Registration of user happens on this platform
-	b) This is where the user will create his own digital profile.
-	c) The "users collection" has the structure like below:
-		![users](screenshots/users_collection.JPG)
-	d) You need to add one themes database also so that the themes section will appear , else it will be blank by default. Database structure is like below:\
-		![themes](screenshots/themes_collection.JPG)
+Run this project : >>nodemon server.js \
+	a) Actual Login/Registration of user happens on this platform \
+	b) This is where the user will create his own digital profile. \
+	c) The "users collection" has the structure like below: \
+		![users](screenshots/users_collection.JPG) \
+	d) You need to add one themes database also so that the themes section will appear , else it will be blank by default. Database structure is like below: \
+		![themes](screenshots/themes_collection.JPG) \
 		
 		
 		
-# SHADEBOOK ADMIN [ Runs on Port 5000 ]:
-Run this project : >>nodemon server.js
-	a)This portal is only for administrative purpose.
-	b)All users,contacts,themes,etc will be managed from here.
+# SHADEBOOK ADMIN [ Runs on Port 5000 ]: \
+Run this project : >>nodemon server.js \
+	a)This portal is only for administrative purpose. \
+	b)All users,contacts,themes,etc will be managed from here. 
