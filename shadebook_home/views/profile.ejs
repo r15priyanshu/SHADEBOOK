@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>PROFILE</title>
+  </head>
+
+  <style>
+
+  </style>
+  <body>
+      <!-- start of allContainer -->
+      <div class="container-fluid allContainer">
+
+        <!-- MAIN ROW 1 -->
+        <div class="row mainrow mainrow1">
+          <!-- start of column 1 -->
+          <div class="col-md-6 column1">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="fullnameContainer">
+                  <h1><%=user.fname%></h1>
+                  <h1>
+                    <%=user.lname%>
+                    <%if(user.profilepic=="blankdp"){%>
+                      <img src="/Images/blankdp.jpg" alt="profile pic" height="60px" width="60px" style="border-radius:50%;">
+                    <%}else{%>
+                      <img src="/uploads/<%=user.username%>/profile pic/<%=user.profilepic%>" alt="profile pic" height="60px" width="60px" style="border-radius:50%;">
+                    <%}%>
+                  </h1>
+                </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="bioContainer">
+                    <p><%=user.bio%></p>
+                    <hr size="20px">
+                  </div>
+              </div>
+            </div>
+
+
+            <!-- WORk View -->
+            <div class="row WorkView">
+              <div class="col-md-12">
+                <div class="viewContainer">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="viewContainerOne">
+                        <h3>FEATURED-PHOTOS</h3>
+                        <div class="content">
+                            <div class="row">
+                              <% for(let image of user.featuredPhotos.reverse()){ %>
+                                <div class="col-md-6">
+                                  <div class="eachFeaturedPhotoContainer">
+                                    <a href="/uploads/<%=user.username%>/featured_photos/<%=image.imagename%>" target="_blank">
+                                        <img src="/uploads/<%=user.username%>/featured_photos/<%=image.imagename%>" alt="featured photos" height="140px" width="140px">
+                                    </a>
+                                  </div>
+                                </div>
+                              <% } %>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="col-md-6">
+                      <div class="viewContainerTwo">
+                        <h3>PAST WORKS</h3>
+                        <div class="content">
+                          <div class="row">
+                                    <%for(let content of user.pastWork.reverse()){%>
+                                    <div class="col-md-6">
+                                      <%if(content.content_type=="link"){%>
+                                      <div class="linkContent pastWorkAllBox">
+                                        <form method="post" >
+                                          <img src="/Images/link1.jpg" alt="link photo" width="140px" height="140px"  style="margin-left:auto;margin-right:auto;display:block;">
+                                          <div class="justify-content-center button_div" style="display:flex;margin-top:5px;">
+                                            <a href="<%=content.link%>" class="btn btn-sm btn-light view_link" target="_blank"><i class="fa fa-external-link-square" aria-hidden="true"></i> Visit Link</a>
+                                          </div>
+                                        </form>
+                                      </div>
+                                      <%}else if(content.content_type=="photo"){%>
+                                      <div class="photoContent pastWorkAllBox" >
+                                        <form class="" method="post">
+                                          <img src="/uploads/<%=user.username%>/past work/<%=content.filename%>" alt="content photo" width="140px" height="140px"  style="margin-left:auto;margin-right:auto;display:block;">
+                                          <div  class="justify-content-center button_div" style="display:flex;margin-top:5px;">
+                                            <button type="submit" name="button2" formaction="/home/searchUser/<%=user.uniqueusername%>/viewPastPost/<%=user._id%>/<%=content._id%>" class= " btn btn-sm btn-light"><i class="fas fa-file-image"></i> View Photo</button>
+                                          </div>
+                                        </form>
+                                      </div>
+                                      <%}else{%>
+                                      <div class="videoContent pastWorkAllBox">
+                                        <form class="" method="post">
+                                          <video width="140px" height="140px" style="margin-left:auto;margin-right:auto;display:block;">
+                                            <source src="/uploads/<%=user.username%>/past work/<%=content.filename%>">
+                                          </video>
+                                          <input type="text" name="videoFileName" value="<%=content.filename%>" hidden>
+                                          <div  class="justify-content-center button_div" style="display:flex;margin-top:5px;">
+                                            <button type="submit" name="button" formaction="/home/searchUser/<%=user.uniqueusername%>/viewPastPost/<%=user._id%>/<%=content._id%>" class= " btn btn-sm btn-light"><i class="fas fa-file-video"></i> View Video</button>
+                                          </div>
+                                        </form>
+                                      </div>
+                                      <%}%>
+                                    </div>
+                                    <%}%>
+                                  <!-- end of for -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end of coumn 1 -->
+          <!-- start of coulumn 2 -->
+          <div class="col-md-6 column2">
+            <div class="bigImageContainer">
+              <% if(user.featuredPhotos.length<=0){ %>
+                  <img src="/Images/blankdp.jpg" alt="" width="650" height="500" class="bigImage">
+              <% }else{ %>
+                <img src="/uploads/<%=user.username%>/featured_photos/<%=user.featuredPhotos[0].imagename%>" alt="" width="650" height="500" class="bigImage">
+              <% } %>
+            </div>
+          </div>
+          <!-- end of coumn 2 -->
+      </div>
+      <!-- END OF MAIN ROW ! -->
+
+      <!-- MAIN ROW 2 -->
+      <div class="row mainrow justify-content-center">
+        <div class="col-md-8">
+          <div class="socialLinksBox">
+            <div class="row">
+              <div class="col-md-4">
+                <a href="<%=user.facebookLink%>"  target="_blank">
+                  <i class="fab fa-facebook fa-5x"></i>
+                </a>
+              </div>
+              <div class="col-md-4">
+                <a href="<%=user.linkedinLink%>">
+                  <i class="fab fa-linkedin fa-5x"></i>
+                </a>
+              </div>
+              <div class="col-md-4">
+                <a href="<%=user.instagramLink%>">
+                  <i class="fab fa-instagram fa-5x"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END OF MAIN ROW 2 -->
+
+      <!-- start of blog post view -->
+      <div class="container-fluid blogContainerMain">
+        <div class="blogContainer">
+          <div class="alert alert-dismissible alert-danger" style="margin-top:20px;text-align:center;">
+            <strong><u> <h3><i class="fa fa-arrow-circle-down" aria-hidden="true"></i> RECENT POSTS <i class="fa fa-arrow-circle-down" aria-hidden="true"></i></h3></u></strong>
+          </div>
+            <%if(user.blogPosts.length==0){%>
+              <div class="alert alert-dismissible alert-info" style="margin-top:20px;width:50%;margin-left:auto;margin-right:auto;text-align:center;">
+                <strong>Nothing to show here !!</strong>
+              </div>
+            <%}else{%>
+              <%for(let eachBlog of user.blogPosts.reverse()){%>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="eachBlogPostContainer">
+                      <div class="eachPostBox">
+                        <h4><u><%=eachBlog.postTitle%></u></h3>
+                        <p>
+                          <%=eachBlog.postBody%>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <%}%>
+            <%}%>
+        </div>
+      </div>
+
+
+    </div>
+    <!-- end of allContainer -->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>

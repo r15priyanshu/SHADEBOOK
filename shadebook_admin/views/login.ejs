@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Admin Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+
+<style>
+  body{
+    background: rgb(238,174,202);
+background: linear-gradient(270deg, rgba(238,174,202,1) 0%, rgba(233,211,148,1) 100%);
+  }
+  .loginBox{
+    background-color:#ffffff60;
+    width:60%;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+    margin-top:50px;
+    box-shadow:10px 10px 5px grey;
+    border-radius:20px;
+    padding:30px;
+  }
+
+  .input{
+    border-radius: 25px;
+    margin-bottom:40px;
+  }
+</style>
+
+<body>
+  <div class="container-fluid">
+    <div class="row logincontainer justify-content-center align-items-center">
+      <div class="col-md-8">
+        <div class="loginBox">
+          <b><h1 style="color:black;margin-bottom:30px;font-family: 'Oswald', sans-serif;">WELCOME TO SHADEBOOK !!</h1></b>
+          <% if(success_msg!=""){ %>
+          <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong><%=success_msg%></strong>
+          </div>
+          <%}%>
+          <% if(error!=""){ %>
+          <div class="alert alert-dismissible alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong><%=error%></strong>
+          </div>
+          <%}%>
+          <form action="/adminlogin" method="post">
+            <div class="form-group">
+              <input type="text" class="form-control input" name="username" placeholder="Enter Administrator's username">
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control input" name="password" placeholder="Enter password">
+            </div>
+            <button type="submit" class="btn btn-light" style="margin-bottom:30px;">LOG IN</button>
+          </form>
+          <a href="/register" class="btn btn-sm btn-dark">REGISTER NEW ADMIN</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+
+</html>

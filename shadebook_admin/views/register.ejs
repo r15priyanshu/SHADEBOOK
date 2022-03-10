@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Register Admin</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <style>
+    body{
+      background: rgb(34,193,195);
+background: linear-gradient(270deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+    }
+
+    .signupcontainer{
+      color: white;
+
+    }
+    .signupcontainer h2{
+      color: white;
+      margin-bottom: 30px;
+    }
+    .innerBox{
+      margin-top: 30px;
+      padding: 25px;
+      border-radius: 20px;
+      background-color: #ffffff30;
+      box-shadow: 10px 10px 10px black;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="signupcontainer">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="innerBox">
+            <h2 style="text-align:center;"><u>Enter Details</u></h1>
+            <% if(typeof err !="undefined"){ %>
+            <div class="alert alert-dismissible alert-danger">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <strong><%=err%></strong>
+            </div>
+            <%}%>
+
+            <% if(error_msg!=""){ %>
+            <div class="alert alert-dismissible alert-danger">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <strong><%=error_msg%></strong>
+            </div>
+            <%}%>
+
+
+            <form action="/register" method="post">
+              <div class="form-group">
+                <label>UserName</label>
+                <input type="text" class="form-control" name="username" placeholder="Enter account username">
+              </div>
+              <div class="form-group">
+                <label>Password</label>
+                <input type="password" autocomplete="off" class="form-control" name="password" placeholder="Enter password">
+              </div>
+              <button type="submit" id="signup" class="btn btn-sm btn-primary">Register Admin</button>
+              <button type="reset" name="button" class="btn btn-sm btn-outline-danger">Reset</button>
+            </form>
+            <a href="/login" class="btn btn-dark btn-sm" style="margin-top:25px;">Login Here</a>
+          </div>
+
+        </div>
+      </div>
+
+
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+
+</html>

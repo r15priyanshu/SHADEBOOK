@@ -1,0 +1,481 @@
+@font-face {
+  font-family:twentyeight;
+  src: url("/fonts/28 Days Later.ttf") format("truetype");
+}
+@font-face {
+  font-family:BebasNeue;
+  src: url("/fonts/BebasNeue-Regular.otf") format("opentype");
+}
+@font-face {
+  font-family:lithospro;
+  src: url("/fonts/lithospro.otf") format("opentype");
+}
+@font-face {
+  font-family:ErasITC;
+  src: url("/fonts/Eras.ttf") format("truetype");
+}
+
+
+body{
+  margin: 0;
+  padding: 0;
+  background-color:white;
+}
+
+.allContainer{
+  margin: 0;
+  padding: 0;
+}
+.home{
+  padding-bottom: 250px;
+  background-image: url("/Images/homepage.png");
+  padding: 0;
+  background-size:cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+.brand{
+  text-align: center;
+  padding-left: 20px;
+}
+.brandname{
+  margin-bottom: 0;
+  font-size:17px;
+  letter-spacing: -1px;
+  color:white;
+  font-family: lithospro;
+}
+.nav-item{
+  font-size:20px;
+  padding-right: 15px;
+  padding-left: 15px;
+  font-family: BebasNeue;
+  color:white;
+}
+.navbar-light .navbar-nav .nav-link{
+  color: #ffffff;
+}
+.navbar-light .navbar-nav .nav-link:hover{
+  color: grey;
+}
+
+.homeTextContainer{
+  margin-top:8vh;
+  text-align:center;
+}
+.homerow{
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.text1{
+font-family: twentyeight;
+font-size:5vw;
+color: #ffffff;
+margin-top: 0;
+margin-bottom: 0;
+padding-top:0;
+padding-bottom: 0;
+
+}
+.text2{
+  font-family: twentyeight;
+  font-size:7vw;
+  color: #ffffff;
+  margin-top: -20px;
+  margin-bottom: 0;
+  padding-top:0;
+  padding-bottom: 0;
+
+}
+.text3{
+  font-family: twentyeight;
+  font-size:2vw;
+  letter-spacing: 0px;
+  color: #ffffff;
+  margin-top: 20px;
+  margin-bottom: 0;
+  padding-top:0;
+  padding-bottom: 0;
+}
+.icon{
+  color:white;
+}
+.iconbox{
+  background-color: rgba(0,0,0,0.5);
+  width:50px;
+  text-align: right;
+  padding-top: 5px;
+  padding-bottom:5px;
+  padding-right: 5px;
+  border:1px solid white;
+  border-radius: 8px;
+  margin-bottom:2px;
+  margin-left: -25px;
+}
+.loginButton{
+  margin-top: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+/* aboout us section */
+.aboutus{
+  padding-top: 50px;
+  padding-bottom: 100px;
+  padding-left: 0;
+  padding-right: 0;
+  margin:0;
+  background-image: url("/Images/aboutUs.png");
+  background-size:cover;
+  background-position: center center;
+}
+.aboutusrow{
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom:50px;
+}
+.aboutUsHeading{
+  padding-left: 50px;
+  color:white;
+}
+.aboutUsPara p{
+  color:white;
+  font-size: 22px;
+}
+.myheading{
+  border-bottom: 3px solid white;
+  padding-bottom: 10px;
+}
+.mysubheading{
+  border-bottom: 3px solid white;
+  padding-bottom: 5px;
+}
+
+.aboutIconContainer{
+  margin-top:20px;
+  text-align:center;
+  color:white;
+}
+.aboutTextContainer{
+  color:white;
+  text-align:center;
+  width:75%;
+  margin-top:50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.title{
+  margin-bottom: 25px;
+}
+.readMoreBtn{
+  padding-left: 40px;
+  padding-right:40px;
+  border-radius: 25px;
+  margin-top: 20px;
+  margin-bottom:20px;
+}
+.gradientBox{
+  background: rgb(175,174,184);
+background: linear-gradient(195deg, rgba(175,174,184,0.4038749288778011) 0%, rgba(5,5,5,0.8520542005864846) 56%);
+
+}
+
+/* features section 1 */
+.featuresHeading{
+  padding-left: 50px;
+  color:white;
+}
+
+.features1{
+  margin: 0;
+  padding: 0;
+  background-image: url("/Images/features.png");
+  background-size:cover;
+  background-position: center center;
+  display: block;
+}
+
+.featuresrow{
+  padding-top: 50px;
+  margin-left: 0;
+  margin-right: 0;
+
+}
+
+/* features section 2 */
+.features2{
+  display: block;
+  background-image: url("/Images/features.png");
+  background-size:cover;
+  background-position:center center;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+.content{
+  text-align:center;
+}
+.features2heading{
+  font-family: ErasITC;
+  font-size:7vw;
+  color:white;
+  margin-bottom: -10px;
+}
+.features2description{
+  color:white;
+  font-size: 4vh;
+  margin-bottom: 0;
+}
+.description{
+  padding-left: 10px;
+  padding-right: 10px;
+
+}
+.outerbox{
+  padding-top:30px;
+  padding-bottom:30px;
+  background-color: rgba(255, 255, 255,0.1);
+}
+.learnMore{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.learnMoreButton{
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+/* features section 3 */
+.features3{
+  background-image: url("/Images/features.png");
+  background-size:cover;
+  background-position:top;
+  margin:0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.features3row{
+  margin-left:0;
+  margin-right: 0;
+}
+.features3HeadingContainer{
+  text-align:center;
+  color:white;
+  padding-top: 30px;
+  min-height: 100px;
+}
+.features3IconContainer{
+  margin-top: 20px;
+  margin-bottom:20px;
+  text-align:center;
+  color:white;
+}
+.features3TextContainer{
+  text-align:center;
+  color:white;
+
+}
+.column{
+  margin-top:5px;
+  text-align: center;
+
+}
+.features3Box{
+  width: 100%;
+  margin-left:auto;
+  margin-right:auto;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding-left: 40px;
+  padding-right: 40px;
+  min-height:450px;
+}
+.features3TextContainer p{
+  font-size: 20px;
+}
+
+/* features 4 section*/
+
+.features4{
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
+  background-image: url("/Images/background.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.features4row{
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 60px;
+  padding-top: 60px;
+  background-color: rgba(128, 128, 128, 0.4);
+
+}
+
+.features4ContentContainer{
+  text-align: center;
+  padding-left:0;
+  padding-right: 0;
+  padding-top: 50px;
+  padding-bottom:50px;
+  background-color: rgba(128, 128, 128, 0.4);
+}
+
+.features4ContentContainer h1{
+  font-family: ErasITC;
+  font-size: 12vh;
+  margin-bottom:10px;
+  color:white;
+}
+
+.features4text{
+  color:white;
+  font-size:3vh;
+  border-bottom: 3px solid white;
+  padding-bottom: 3px;
+}
+
+.linkContainer{
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.features4ContentContainer p a{
+  color:black;
+  text-decoration: underline;
+}
+
+.features4ContentContainer p{
+  color:white;
+}
+
+/* FOOTER SECTION */
+.footerContainer{
+  margin-left:0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+  background-image: url("/Images/background.png");
+  background-position:center;
+}
+
+.footerrow{
+  margin-left:0;
+  margin-right: 0;
+}
+
+.eachFooterBlock{
+  min-height:374px;
+  /* background-color: pink; */
+  width:90%;
+  text-align: center;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.block1{
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.block1 p{
+  color:white;
+  font-family: ErasITC;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.block2{
+  padding-top: 150px;
+}
+.block2 h4{
+  color: white;
+  margin-bottom: 20px;
+}
+.block2 p{
+  color: white;
+  font-weight: bold;
+}
+.block2 p a{
+  color: white;
+  text-decoration: underline;
+}
+
+
+.block3{
+  padding-top: 150px;
+}
+.block3 h4{
+  color: white;
+  margin-bottom: 20px;
+}
+.block3 a{
+  color:white;
+}
+.block3 a .iconStyle1{
+  color:black;
+}
+
+
+.CopyrightText{
+  color:white;
+  font-size: 20px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+/* END OF FOOTER SECTION */
+
+
+@media(max-width:700px){
+  .text1{
+    font-size:13vw;
+  }
+  .text2{
+    font-size:20vw;
+  }
+  .text3{
+    font-size: 6vw;
+  }
+}
+/* mobile settings for features section 2 */
+@media(max-width:500px){
+  .features2heading{
+    font-family: ErasITC;
+    font-size:14vw;
+    color:white;
+    margin-bottom: -10px;
+  }
+  .features2description{
+    color:white;
+    font-size: 3vh;
+    margin-bottom: 0;
+  }
+}
+
+/* mobile settings for features section 4 */
+.features4ContentContainer h1{
+  font-family: ErasITC;
+  font-size: 12vh;
+  margin-bottom:10px;
+  color:white;
+}
+
+@media(max-width:500px){
+  .features4ContentContainer h1{
+    font-family: ErasITC;
+    font-size: 14vw;
+    margin-bottom:10px;
+    color:white;
+  }
+}

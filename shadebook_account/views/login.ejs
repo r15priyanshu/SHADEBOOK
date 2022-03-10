@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+
+<style>
+  body{
+    background-image: url("/Images/login.png");
+    background-position:center;
+    background-size:cover;
+    background-attachment: fixed;
+  }
+
+  .input{
+    border-radius: 25px;
+    margin-bottom:40px;
+  }
+</style>
+
+<body>
+  <div class="container-fluid">
+    <div class="row justify-content-end">
+      <div class="col-md-2 col-sm-4  col-4">
+        <div class="">
+          <img src="/Images/logo.png" alt="logo" width="100%" height="150px" >
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-end">
+      <div class="col-md-2 col-sm-4  col-4" style="text-align:center;color:white;">
+        <h6 style="font-family: 'Oswald', sans-serif;">SHADEBOOK</h6>
+      </div>
+    </div>
+    <div class="row logincontainer justify-content-center align-items-center">
+      <div class="col-md-8 justify-content-left">
+        <div class="col-md-6" style="text-align:center;">
+          <b><h1 style="color:white;margin-bottom:30px;font-family: 'Oswald', sans-serif;">WELCOME !!</h1></b>
+          <% if(success_msg!=""){ %>
+          <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong><%=success_msg%></strong>
+          </div>
+          <%}%>
+
+          <% if(error!=""){ %>
+          <div class="alert alert-dismissible alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong><%=error%></strong>
+          </div>
+          <%}%>
+
+          <form action="/userlogin" method="post">
+            <div class="form-group">
+              <input type="email" class="form-control input" name="username" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control input" name="password" placeholder="Enter password">
+            </div>
+
+            <button type="submit" class="btn btn-info btn-sm" style="margin-bottom:30px;">SIGN IN</button>
+          </form>
+          <a href="http://localhost:4000/" class="btn btn-sm btn-dark" style="display:block;margin-bottom:20px;">GO BACK TO HOMEPAGE</a>
+          Don't have an account?<a href="/home/register" style="color:red;"><u><strong>Register Now</strong></u></a>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+
+</html>

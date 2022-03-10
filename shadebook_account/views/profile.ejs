@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+  <script src="sweetalert2.all.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+  <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Handlee&family=Oswald:wght@500&family=Yanone+Kaffeesatz:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <title>Profile</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/profile.css">
+  <link rel="stylesheet" href="/css/navigation.css">
+  <style>
+
+    body {
+      margin: 0;
+      background-image: url("/Images/wall2.jpg");
+      background-repeat: repeat-y;
+      background-position: center;
+      background-size: cover;
+    }
+
+    .activeBar {
+      color: white;
+      font-size: 18px;
+      font-weight:bold;
+    }
+
+    .pastWorkAllBox {
+      padding: 3px;
+    }
+
+
+  </style>
+</head>
+
+<body>
+  <div class="sidebar">
+    <a href="/<%=user.uniqueusername%>/profile"><b><i class="fa fa-user" aria-hidden="true"></i> SHADEBOOK</b></a>
+    <a class="mylink activeBar" href="/<%=user.uniqueusername%>/profile">Profile</a>
+    <a class="mylink" href="/blogpost">Blog Posts</a>
+    <a class="mylink " href="/themes">Themes</a>
+    <a class="mylink" href="/settings">Settings</a>
+    <a class="mylink" href="/home/logout">Logout Now</a>
+  </div>
+
+
+  <!-- this will contain all the contents -->
+  <div class="content container">
+
+    <div class="viewProfile">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="viewProfileContainer">
+            <%if(user.profilepic=="blankdp"){%>
+              <img src="/Images/blankdp.jpg" alt="BLANK PROFILE PIC" height="50px" width="50px" style="border-radius:50%;">
+            <%}else{%>
+              <img src="/uploads/<%=user.username%>/profile pic/<%=user.profilepic%>" alt="profile pic" height="50px" width="50px" style="border-radius:50%;">
+            <%}%>
+            <a name="button" class="btn btn-sm btn-info " href="http://localhost:4000/home/searchUser/<%=user.uniqueusername%>" target="_blank"><i class="fa fa-mouse-pointer" aria-hidden="true"></i>  View Profile</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- profile container start -->
+    <div class="profile container" id="PC" style="margin-bottom:50px;">
+            <div class="card" style="background-color:rgba(255,255,255,0.5)">
+              <h4 class="card-header" style="background-color:#F7F7F7">Profile</h4>
+                <div class="card-body" style="background-color:rgba(255,255,255,0.5)">
+                  <div class="row profilePic justify-content-center">
+                    <div class="col-md-4">
+                      <% if(user.profilepic=="blankdp"){ %>
+                        <img src="/Images/blankdp.jpg" id="output1" class="propicOne" alt="blank user pic" height="200px" width="200px" style="border-radius:50%;">
+                      <% }else{ %>
+                        <img src="/uploads/<%=user.username%>/profile pic/<%=user.profilepic%>" id="output2" alt="profile pic" height="200px" width="200px" style="border-radius:50%;">
+                      <% } %>
+                      <div>
+                        <form class="" action="/uploadProfilePic" method="post" enctype="multipart/form-data">
+                          <button type="button" name="button" class="btn btn-sm btn-info" id="profilePicChoose"><i class="fas fa-image"></i>  Choose</button>
+                          <input type="file" class=" fileinput" name="profilePic" id="profilePicFileInput" onchange="loadFile(event)" value="" required hidden>
+                          <button type="submit" name="button" class="btn btn-sm uploadProfilePicButton"><i class="fa fa-upload" aria-hidden="true"></i> Upload Pic</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row justify-content-center">
+                    <div class="col-md-6 col-sm-12">
+                      <form action="/updateProfile" method="post">
+
+                          <div class="row">
+                            <div class="col">
+                                <label>First Name</label>
+                                <input type="text" class="form-control" name="fname" placeholder="Enter first name" value="<%=user.fname%>">
+                            </div>
+                            <div class="col">
+                              <label>Last Name</label>
+                              <input type="text" class="form-control" name="lname" placeholder="Enter last name" value="<%=user.lname%>">
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col">
+                                <label>Mobile</label>
+                                <input type="text" class="form-control" name="mobile" placeholder="Enter Mobile Number" value="<%=user.mobile%>" readonly>
+                            </div>
+                            <div class="col">
+                                <label>Email</label>
+                                <input type="text" class="form-control" name="username" value="<%=user.username%>"  readonly>
+                            </div>
+                          </div>
+                        <div class="form-group">
+                          <label>Bio</label>
+                          <input type="text" class="form-control" name="bio" value="<%=user.bio%>" placeholder="Enter Bio Here" maxlength="200" autocomplete="off">
+                        </div>
+                        <div class="" style="text-align:center;">
+                          <button type="submit" id="updateProfile" class="btn btn-sm btn-success"><i class="fa fa-check" aria-hidden="true"></i> Update Profile</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+            </div>
+    </div>
+    <!-- end of profile container -->
+
+    <!-- start of social links container -->
+    <div class="socialLinksContainer" id="SL" style="margin-bottom:50px;">
+        <div class="card"  style="background-color:rgba(255,255,255,0.5)">
+          <h4 class="card-header"  style="background-color:#F7F7F7">My Social Links</h4>
+          <div class="card-body"  style="background-color:rgba(255,255,255,0.5)">
+
+            <div class="">
+              <% if(social_links_success!=""){ %>
+                  <div class="alert alert-dismissible alert-success">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong><%=social_links_success%></strong>
+                  </div>
+              <%}%>
+
+              <% if(social_links_failure!=""){ %>
+                  <div class="alert alert-dismissible alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong><%=social_links_failure%></strong>
+                  </div>
+              <%}%>
+            </div>
+            <!-- social link adding -->
+            <div class="row">
+              <div class="col-md-6">
+                    <div class="container socialAdd" id="linkAddFacebook" style="margin-bottom:25px;">
+                      <div class="addlink" style="margin-bottom:50px;">
+                        <form action="/addSocialLinksFacebook" method="post">
+                          <div class="form-group">
+                            <label>FACEBOOK</label>
+                            <input type="text" class="form-control" name="facebookLink" placeholder="Enter the facebook profile url here"  value="<%=user.facebookLink%>" required>
+                          </div>
+                          <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-link" aria-hidden="true"></i> Add link</button>
+                          <%if(user.facebookLink!=""){%>
+                            <a href="<%=user.facebookLink%>" class="btn btn-sm btn-info" target="_blank">Visit</a>
+                          <%}%>
+                        </form>
+                      </div>
+                    </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                    <div class="container socialAdd" id="linkAddLinkedIn" style="margin-bottom:25px;">
+                      <div class="addlink" style="margin-bottom:50px;">
+                        <form action="/addSocialLinksLinkedIn" method="post">
+                          <div class="form-group">
+                            <label>LINKEDIN</label>
+                            <input type="text" class="form-control" name="linkedInLink" placeholder="Enter the linkedIn profile url here" value="<%=user.linkedinLink%>" required>
+                          </div>
+                          <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-link" aria-hidden="true"></i> Add link</button>
+                          <%if(user.linkedinLink!=""){%>
+                            <a href="<%=user.linkedinLink%>" class="btn btn-sm btn-info" target="_blank">Visit</a>
+                          <%}%>
+                        </form>
+                      </div>
+                    </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                    <div class="container socialAdd" id="linkAddInstagram" style="margin-bottom:25px;">
+                      <div class="addlink" style="margin-bottom:50px;">
+                        <form action="/addSocialLinksInstagram" method="post">
+                          <div class="form-group">
+                            <label>INSTAGRAM</label>
+                            <input type="text" class="form-control" name="instagramLink" placeholder="Enter the instagram profile url here" value="<%=user.instagramLink%>" required>
+                          </div>
+                          <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-link" aria-hidden="true"></i> Add link</button>
+                          <%if(user.instagramLink!=""){%>
+                            <a href="<%=user.instagramLink%>" class="btn btn-sm btn-info" target="_blank">Visit</a>
+                          <%}%>
+                        </form>
+                      </div>
+                    </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+    </div>
+    <!-- end of social links container -->
+
+    <!--start of featured photos container -->
+    <div class="featuredPhotos container" id="FF" style="margin-bottom:50px;">
+          <div class="card"   style="background-color:rgba(255,255,255,0.5)">
+            <h4 class="card-header"   style="background-color:#F7F7F7">Featured Photos</h4>
+            <div class="card-body"   style="background-color:rgba(255,255,255,0.5)">
+              <!--featured photo adding -->
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="container photosAdd" id="photoAdd" style="margin-bottom:50px;">
+                      <div class="photoForm" style="margin-bottom:40px;">
+                          <% if(error_msg!=""){ %>
+                              <div class="alert alert-dismissible alert-danger">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <strong><%=error_msg%></strong>
+                              </div>
+                          <%}%>
+                          <% if(success_msg!=""){ %>
+                              <div class="alert alert-dismissible alert-success">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <strong><%=success_msg%></strong>
+                              </div>
+                          <%}%>
+                          <form class="" action="/uploadFeaturedPhotos" method="post" enctype="multipart/form-data">
+                            <p>Select the photo to be uploaded!</p>
+                            <input type="file" id="featuredPhotosFileInput" name="myimage" class="form-control" value="" required hidden>
+                            <button type="button" name="button" id="featuredPhotosChoose" class="btn btn-info btn-sm"><i class="fas fa-image"></i> Choose</button>
+                            <button type="submit" name="button" class="btn btn-success btn-sm featuredPhotosUploadButton"><i class="fa fa-check" aria-hidden="true"></i> Upload Now</button>
+                          </form>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <!-- all featured photos view -->
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="container allphotos">
+                    <h4>All Featured Photos</h4>
+                    <%if(user.featuredPhotos.length<=0){%>
+                        <div class="alert alert-info" role="alert">
+                          Nothing to show now...!! please add photos first!!
+                        </div>
+                    <%}%>
+                    <div class="row">
+                      <% for(let image of user.featuredPhotos.reverse()){ %>
+                          <div class="col-md-3 col-sm-6" style="padding:10px;background-size:cover;text-align:center;">
+                            <form class="" action="/deleteFeaturedPhotos/<%=image._id%>" method="post">
+                              <a href="/uploads/<%=user.username%>/featured_photos/<%=image.imagename%>" target="_blank">
+                                <img class="img-responsive featuredImage" src="/uploads/<%=user.username%>/featured_photos/<%=image.imagename%>" alt="user uploaded photos" height="200px" width="200px"><br>
+                              </a>
+                              <input type="text" name="featuredPhotosImageName" value="<%=image.imagename%>" hidden>
+                              <button type="submit" name="button" class="btn btn-sm btn-primary" style="margin-top:5px;"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            </form>
+                          </div>
+                          <%}%>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+    </div>
+    <!-- end of featuredPhotos container -->
+
+
+    <!-- start of past work container -->
+    <div class="container pastWork" id="PW">
+            <div class="card"   style="background-color:rgba(255,255,255,0.5)">
+              <h4 class="card-header"   style="background-color:#F7F7F7">Past Works</h4>
+              <div class="card-body"   style="background-color:rgba(255,255,255,0.5)">
+                <div class="pastWorkAdd">
+                  <h3>Add new work</h3>
+
+                  <div class="row" style="margin-bottom:50px;">
+                    <div class="col-md-3">
+                      <label class="my-1 mr-2">Select from below</label>
+                      <select class="custom-select my-1 mr-sm-2" id="newWorkList" onchange="run()">
+                        <option selected>Choose...</option>
+                        <option value="photo">Photo</option>
+                        <option value="video">Video</option>
+                        <option value="link">Link</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="row linkForm" id="linkForm" style="display:none;margin-bottom:50px;">
+                      <div class="col-md-6">
+                        <form class="" action="/pastWork/link" method="post">
+                                <input type="text" name="link" value="link" hidden>
+                                <label>Link Description:</label>
+                                <input type="text" name="linkDescription" class="form-control" required>
+                                <label>Add Link Here:</label>
+                                <input type="text" name="newLink" class="form-control" required>
+                                <button type="submit" class="btn btn-sm btn-success pastWorkLinkAddButton" name="button"><i class="fa fa-link" aria-hidden="true"></i> Add link</button>
+                        </form>
+                      </div>
+                  </div>
+
+                  <div class="row photoForm" id="photoForm" style="display:none;margin-bottom:50px;">
+                    <div class="col-md-8">
+                      <form class="" action="/pastWork/photo" method="post" enctype="multipart/form-data" >
+                              <label>Description:</label>
+                              <input type="text" class="form-control" name="photoDescription" autocomplete="off" required><br>
+                              <p>Select the photo to be uploaded!</p>
+                              <input type="file" id="pastWorkPhotosFileInput" class="form-control" name="myphoto" value="" required hidden>
+                              <button type="button" name="button" id="pastWorkPhotosChoose" class="btn btn-info btn-sm"><i class="fas fa-image"></i> Choose</button>
+                              <button type="submit" name="button" class="btn btn-success btn-sm pastWorkPhotoAddButton"><i class="fa fa-check" aria-hidden="true"></i> Upload Photo</button>
+                      </form>
+                    </div>
+                  </div>
+
+                  <div class="row videoForm" id="videoForm" style="display:none;margin-bottom:50px;">
+                    <div class="col-md-8">
+                      <form class="" action="/pastWork/video" method="post" enctype="multipart/form-data" >
+
+                              <label>Description:</label>
+                              <input type="text" class="form-control" name="videoDescription" autocomplete="off" required><br>
+                              <p>Select the video to be uploaded!</p>
+                              <input type="file" class="form-control" id="pastWorkVideosFileInput" name="myvideo" value="" required hidden>
+                              <button type="button" name="button" id="pastWorkVideosChoose" class="btn btn-info btn-sm"><i class="fas fa-file-video"></i> Choose</button>
+                              <button type="submit" name="button" class="btn btn-success btn-sm pastWorkVideoAddButton"><i class="fa fa-check" aria-hidden="true"></i> Upload Video</button>
+                      </form>
+                    </div>
+                  </div>
+              </div>
+            <!-- end of pastworkAdd container -->
+            <!-- start of past work view -->
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-md-12">
+
+                                        <% if(past_work_error!=""){ %>
+                                      <div class="alert alert-dismissible alert-danger">
+                                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                        <strong><%=past_work_error%></strong>
+                                      </div>
+                                      <%}%>
+
+                                  <% if(past_work_success!=""){ %>
+                                      <div class="alert alert-dismissible alert-success">
+                                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                        <strong><%=past_work_success%></strong>
+                                      </div>
+                                      <%}%>
+
+
+                    
+                    <%if(user.pastWork.length == 0){%>
+                  <div class="alert alert-info" role="alert">
+                    Nothing to show now...!! please add content first!!
+                  </div>
+                  <%}%>
+                    <%if(user.pastWork.length > 0){%>
+                  <div class="row">
+                    <%for(let content of user.pastWork.reverse()){%>
+
+
+                    <div class="col-md-3 pastWorkEachBox">
+                      <%if(content.content_type=="link"){%>
+                      <div class="linkContent pastWorkAllBox">
+                        <form method="post">
+                          <img src="/Images/link1.jpg" alt="link photo" width="150px" height="150px"  style="margin-left:auto;margin-right:auto;display:block;">
+                          <div class="justify-content-center" style="display:flex;margin-top:5px;">
+                            <button type="submit" name="button" formaction="/deletePastLinks/<%=content._id%>" class="btn btn-sm btn-primary"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            <button type="button" name="button" onclick='myalert("<%=content.description%>")' class="btn btn-sm btn-outline-primary">Description</button>
+                            <a href="<%=content.link%>" class="btn btn-sm btn-primary" target="_blank">Visit link</a>
+                          </div>
+
+                        </form>
+                      </div>
+                      <%}else if(content.content_type=="photo"){%>
+                      <div class="photoContent pastWorkAllBox">
+                        <form class="" method="post">
+                          <img src="/uploads/<%=user.username%>/past work/<%=content.filename%>" alt="content photo" width="150px" height="150px"  style="margin-left:auto;margin-right:auto;display:block;">
+                          <input type="text" name="photoFileName" value="<%=content.filename%>" hidden>
+                          <div  class="justify-content-center" style="display:flex;margin-top:5px;">
+                            <button type="submit" name="button1" formaction="/deletePastPhoto/<%=content._id%>" class="btn btn-sm btn-primary"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            <button type="button" name="button" onclick='myalert("<%=content.description%>")' class="btn btn-sm btn-outline-primary">Description</button>
+                            <button type="submit" name="button2" formaction="/viewPastPost/<%=content._id%>" class= " btn btn-sm btn-primary">view Photo</button>
+                          </div>
+                        </form>
+                      </div>
+                      <%}else{%>
+                      <div class="videoContent pastWorkAllBox">
+                        <form class="" method="post">
+                          <video width="150px" height="150px" style="margin-left:auto;margin-right:auto;display:block;">
+                            <source src="/uploads/<%=user.username%>/past work/<%=content.filename%>">
+                          </video>
+                          <input type="text" name="videoFileName" value="<%=content.filename%>" hidden>
+                          <div  class="justify-content-center" style="display:flex;margin-top:5px;">
+                            <button type="submit" name="button" formaction="/deletePastVideo/<%=content._id%>" class="btn btn-sm btn-primary"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            <button type="button" name="button"  onclick='myalert("<%=content.description%>")' class="btn btn-sm btn-outline-primary">Description</button>
+                            <button type="submit" name="button" formaction="/viewPastPost/<%=content._id%>" class= " btn btn-sm btn-primary">view video</button>
+                          </div>
+                        </form>
+                      </div>
+                      <%}%>
+                    </div>
+                    <%}%>
+                  <!-- end of for -->
+                </div>
+                <%}%>
+                <!-- end-->
+              </div>
+            </div>
+            <!-- end of past work view container -->
+
+            </div>
+        </div>
+    </div>
+    <!-- end of past work main container -->
+
+    <!-- start of profile verification -->
+    <div class="container profileVerification" id="PV" style="margin-top:50px;padding-bottom:50px;">
+
+          <div class="card"   style="background-color:rgba(255,255,255,0.5)">
+            <h4 class="card-header"   style="background-color:#F7F7F7">Profile Verification</h4>
+            <div class="card-body"   style="background-color:rgba(255,255,255,0.5)">
+              <div class="row">
+                <div class="col-sm-4">
+                  <input type="text" class ="form-control" name="" value="<%=user.username%>" readonly>
+                    </div>
+                    <div class="col-sm-1">
+                      <%if(user.emailVerified==1){%>
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                      <%}%>
+                </div>
+                <div class="col-sm-1">
+                  <form class="" action="/generateEmailOtp" method="post">
+                    <button type="submit" name="button" id="button1" class="btn btn-sm btn-dark">Verify</button>
+                  </form>
+                </div>
+                <div class="col-sm-6">
+                  <form class="" action="/verifyEmailOtp" method="post">
+                    <%if(typeof emailotp!="undefined"){%>
+                      <input class="" type="text" name="submitted_otp" placeholder="Enter OTP" required>
+                      <button type="submit" name="button" class="btn btn-sm btn-outline-dark">Submit OTP</button>
+                    <%}%>
+                  </form>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-4">
+                    <input type="text" class ="form-control" name="" value="<%=user.mobile%>" readonly>
+                </div>
+
+                <div class="col-sm-1">
+                    <%if(user.mobileVerified==1){%>
+                      <i class="fa fa-check" aria-hidden="true"></i>
+                    <%}%>
+                </div>
+
+                <div class="col-sm-1">
+                  <form class="" action="/generateMobileOtp" method="post">
+                    <button type="submit" name="button" id="button1" class="btn btn-sm btn-dark">Verify</button>
+                  </form>
+                </div>
+
+                <div class="col-sm-6">
+                  <form class="" action="/verifyMobileOtp" method="post">
+                    <%if(typeof mobileotp!="undefined"){%>
+                      <input class="" type="text" name="submitted_otp" placeholder="Enter OTP" required>
+                      <button type="submit" name="button" class="btn btn-sm btn-outline-dark">Submit OTP</button>
+                    <%}%>
+                  </form>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+    </div>
+    <!-- end of profile verification -->
+
+</div>
+  <!--end of content container-->
+
+  <script>
+function run() {
+  console.log(document.getElementById("newWorkList").value);
+
+  if(document.getElementById("newWorkList").value=="link")
+  {
+    document.getElementById("linkForm").style.display="block";
+    document.getElementById("photoForm").style.display="none";
+    document.getElementById("videoForm").style.display="none";
+  }
+  else if(document.getElementById("newWorkList").value=="photo"){
+    document.getElementById("photoForm").style.display="block";
+    document.getElementById("linkForm").style.display="none";
+    document.getElementById("videoForm").style.display="none";
+  }
+  else{
+    document.getElementById("videoForm").style.display="block";
+    document.getElementById("linkForm").style.display="none";
+    document.getElementById("photoForm").style.display="none";
+  }
+}
+
+    function myalert(msg){
+      Swal.fire({
+      text:msg,
+    })
+  }
+
+  //displaying profile pic before uploding
+  var loadFile = function(event) {
+    var output = document.getElementById('output1');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function() {
+      URL.revokeObjectURL(output.src) // free memory
+    }
+  };
+
+  //displaying profile pic after uploding and then changing
+  var loadFile = function(event) {
+    var output = document.getElementById('output2');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function() {
+      URL.revokeObjectURL(output.src) // free memory
+    }
+  };
+
+
+  document.getElementById("profilePicChoose").addEventListener("click",function(){
+    document.getElementById("profilePicFileInput").click();
+  })
+
+  document.getElementById("featuredPhotosChoose").addEventListener("click",function(){
+    document.getElementById("featuredPhotosFileInput").click();
+  })
+
+  document.getElementById("pastWorkPhotosChoose").addEventListener("click",function(){
+    document.getElementById("pastWorkPhotosFileInput").click();
+  })
+
+  document.getElementById("pastWorkVideosChoose").addEventListener("click",function(){
+    document.getElementById("pastWorkVideosFileInput").click();
+  })
+
+
+
+  </script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+
+</html>

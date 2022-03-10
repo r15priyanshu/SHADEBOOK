@@ -1,0 +1,75 @@
+h1{
+  font-family: 'Oswald', sans-serif;
+}
+
+
+/* profile section */
+.card-header{
+  color:#5b5b5b;
+}
+
+.viewProfile{
+  margin-right: 15px;
+  margin-left: 15px;
+  padding-top: 15px;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  background-color: rgba(255,255,255,0.5);
+  border-radius: 5px;
+}
+
+.viewProfileContainer{
+   width:50%;
+   padding-left: 30px;
+}
+.profilePic{
+  margin-top: 20px;
+  margin-bottom:20px;
+  text-align:center;
+}
+#output1{
+  margin-bottom:10px;
+}
+
+#output2{
+  margin-bottom:10px;
+}
+.uploadProfilePicButton{
+  background-color: grey;
+  color: white;
+}
+
+.updateProfileButton{
+  background-color: grey;
+  color: white;
+}
+
+.featuredPhotosUploadButton{
+}
+
+.featuredImage{
+  border-radius: 15px;
+}
+
+.pastWorkEachBox {
+  box-shadow: 0 0 5px #4E73DF;
+}
+
+.pastWorkLinkAddButton{
+  margin-top:10px;
+  margin-bottom:10px;
+}
+.pastWorkPhotoAddButton{
+
+}
+.verificationPhotoUploadButton{
+}
+
+.pastWorkVideoAddButton{
+}
+
+.socialLinksContainer{
+ margin-bottom:50px;
+ padding-left: 15px;
+ padding-right: 15px;
+}

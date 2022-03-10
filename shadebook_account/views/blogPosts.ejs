@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Posts</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="sweetalert2.all.min.js"></script>
+    <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/css/navigation.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <style>
+    body {
+      margin: 0;
+      background-image: url("/Images/wall1.jpg");
+      background-repeat: repeat-y;
+      background-size:cover;
+    }
+
+    .activeBar{
+      color: white;
+      font-size:18px;
+      font-weight:bold;
+    }
+    /* .dashboard{
+      color:white;
+    } */
+    .postAddContainer{
+      padding: 20px;
+      background-color:#5b5b5b;
+      box-shadow: 10px 10px 200px white;
+      color: black;
+      width: 65%;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 50px;
+      border-radius: 15px;
+    }
+    .postAddContainer button{
+      margin-top: 10px;
+    }
+    .eachBlogPostContainer{
+      margin-top: 15px;
+      margin-bottom: 15px;
+      box-shadow: 5px 5px 10px white;
+      min-height: 100px;
+      border-radius: 10px;
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+    .eachPostBox{
+      padding: 20px;
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+
+<body>
+
+    <div class="sidebar">
+      <a href="/<%=user.uniqueusername%>/profile"><b><i class="fa fa-user" aria-hidden="true"></i> SHADEBOOK</b></a>
+      <a class="mylink" href="/<%=user.uniqueusername%>/profile">Profile</a>
+      <a class="mylink activeBar" href="/blogpost">Blog Posts</a>
+      <a class="mylink" href="/themes">Themes</a>
+      <a class="mylink" href="/settings">Settings</a>
+      <a class="mylink" href="/home/logout">Logout Now</a>
+    </div>
+
+
+      <!-- this will contain all the contents -->
+      <div class="content container">
+        <% if(blogpost_success!=""){ %>
+            <div class="alert alert-dismissible alert-success">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <strong><%=blogpost_success%></strong>
+            </div>
+        <%}%>
+
+        <% if(blogpost_failure!=""){ %>
+            <div class="alert alert-dismissible alert-danger">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <strong><%=blogpost_failure%></strong>
+            </div>
+        <%}%>
+        <div class="postAddContainer">
+          <div class="row">
+            <div class="col-md-12">
+              <form class="" action="/blogpost/addPost" method="post">
+                <label for=""><strong>Post Title:</strong></label>
+                <input type="text" name="postTitle" value="" class="form-control" required >
+                <label for=""><strong>Post Body:</strong></label>
+                <textarea name="postBody" rows=6 cols="80" class="form-control" required></textarea>
+                <button type="submit" name="button" class="btn btn-sm btn-info">Add Post</button>
+                <button type="reset" name="button" class="btn btn-sm btn-danger">Clear</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="postViewContainer">
+          <div class="row">
+            <div class="col-md-12">
+              <%if(user.blogPosts.length==0){%>
+                <div class="alert alert-dismissible alert-info" style="margin-top:20px;text-align:center;">
+                  <strong>No post to show !! Please add some posts first !!</strong>
+                </div>
+              <%}else{%>
+                <div class="alert alert-dismissible alert-info" style="margin-top:20px;text-align:center;">
+                  <strong><u> <h3><i class="fa fa-arrow-circle-down" aria-hidden="true"></i> RECENT POSTS <i class="fa fa-arrow-circle-down" aria-hidden="true"></i></h3></u></strong>
+                </div>
+                <%for(let eachBlog of user.blogPosts.reverse()){%>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="eachBlogPostContainer">
+                        <div class="eachPostBox">
+                          <h4><u><%=eachBlog.postTitle%></u></h3>
+                          <p>
+                            <%=eachBlog.postBody%>
+                          </p>
+                          <form class="" action="/blogpost/deletepost/<%=eachBlog._id%>" method="post">
+                            <button type="submit" name="button" class="btn btn-sm btn-danger">Delete Post</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <%}%>
+              <%}%>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <!--end of content container-->
+
+<script>
+
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+
+</html>

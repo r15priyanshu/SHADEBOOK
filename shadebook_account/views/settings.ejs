@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="sweetalert2.all.min.js"></script>
+  <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+  <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <title>Settings</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/navigation.css">
+    <style>
+
+    body {
+      margin: 0;
+      background-image:url("/Images/wall4.jpg");
+      background-size: cover;
+    }
+    .activeNav {
+      color: white;
+      font-size: 18px;
+      font-weight:bold;
+    }
+    .userSettings{
+      margin-top: 15px;
+      background-color:#5b5b5b70;
+      padding: 50px;
+      border-radius: 10px;
+
+    }
+    .privateSettingContainer{
+      margin-bottom: 30px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+    <div class="sidebar">
+      <a href="/<%=user.uniqueusername%>/profile"><b><i class="fa fa-user" aria-hidden="true"></i> SHADEBOOK</b></a>
+      <a class="mylink" href="/<%=user.uniqueusername%>/profile">Profile</a>
+      <a class="mylink" href="/blogpost">Blog Posts</a>
+      <a class="mylink " href="/themes">Themes</a>
+      <a class="mylink activeNav" href="/settings">Settings</a>
+      <a class="mylink" href="/home/logout">Logout Now</a>
+    </div>
+
+
+<!-- this will contain all the contents -->
+<div class="content container">
+    <!-- start of user settings -->
+      <div class="userSettings">
+        <h1>User Settings</h1>
+            <% if(success_msg!=""){ %>
+              <div class="alert alert-dismissible alert-success">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong><%=success_msg%></strong>
+              </div>
+            <%}%>
+
+            <% if(error_msg!=""){ %>
+              <div class="alert alert-dismissible alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong><%=error_msg%></strong>
+              </div>
+            <%}%>
+
+        <div class="privateSettingContainer">
+          <form class="" action="/settings/private" method="post">
+            <label>Do you want your account to be private ?</label>
+            <%if(user.isprivate=="yes"){%>
+              <label class="radio-inline"><input type="radio" name="makeprivate" value="yes" checked>Yes</label>
+              <label class="radio-inline"><input type="radio" name="makeprivate" value="no">No</label>
+            <%}else{%>
+              <label class="radio-inline"><input type="radio" name="makeprivate" value="yes">Yes</label>
+              <label class="radio-inline"><input type="radio" name="makeprivate" value="no" checked>No</label>
+            <%}%>
+            <button type="submit" name="button" class="btn btn-sm btn-primary privateButton">Submit</button>
+          </form>
+        </div>
+
+
+        <form method="post">
+          <div class="row" style="margin-bottom:10px;">
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="username" name="username" value="<%=user.username%>" readonly>
+            </div>
+          </div>
+
+          <div class="row"  style="margin-bottom:10px;">
+            <div class="col-sm-4">
+              <input type="text" class="form-control" name="uniqueusername" id="uniqueusername" value="<%=user.uniqueusername%>" readonly>
+            </div>
+            <div class="col-sm-4">
+              <button type="button"  id="uniqueusernameEdit" class="btn btn-success">Edit</button>
+              <button type="submit" formaction="/settings/updateUniqueUsername" class="btn btn-dark">Update</button>
+            </div>
+          </div>
+
+            <div class="row"  style="margin-bottom:10px;">
+              <div class="col-sm-4">
+                <input type="text" class="form-control" name="mobile" id="mobile" value="<%=user.mobile%>" readonly>
+              </div>
+
+              <div class="col-sm-4">
+                <button type="button" id="mobileEdit" class="btn btn-success">Edit</button>
+                <button type="submit" formaction="/settings/updateMobile" class="btn btn-dark">Update</button>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <b>ENTER NEW PASSWORD BELOW</b>
+            </div>
+
+          </div>
+
+                    <div class="row"  style="margin-bottom:10px;">
+                      <div class="col-sm-4">
+                        <input type="password" class="form-control" name="password" id="password" value="" readonly>
+                      </div>
+
+                      <div class="col-sm-4">
+                        <button type="button" id="passwordEdit" class="btn btn-success">Edit</button>
+                        <button type="submit" formaction="/settings/updatePassword" class="btn btn-dark">Update</button>
+                      </div>
+                  </div>
+        </form>
+
+      </div>
+    <!-- end of user settings -->
+
+
+</div>
+<!--end of content container-->
+
+<script>
+  document.getElementById("uniqueusernameEdit").addEventListener("click",function(){
+      document.getElementById("uniqueusername").removeAttribute("readonly");
+  });
+
+  document.getElementById("mobileEdit").addEventListener("click",function(){
+      document.getElementById("mobile").removeAttribute("readonly");
+  });
+
+  document.getElementById("passwordEdit").addEventListener("click",function(){
+      document.getElementById("password").removeAttribute("readonly");
+  });
+
+
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+  <!DOCTYPE html>
+  <html>
+
+  <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+      <script src="sweetalert2.all.min.js"></script>
+    <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+      <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+      <title>Themes</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+      <link rel="stylesheet" href="/css/navigation.css">
+      <style>
+
+      body {
+        margin: 0;
+      }
+      .activeNav{
+        color: white;
+        font-size: 18px;
+        font-weight:bold;
+      }
+
+      .themeEachBox {
+        box-shadow: 0 0 5px grey;
+        padding-top: 20px;
+        padding-bottom: 20px;
+      }
+      .buttons_container{
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+
+<body>
+
+      <div class="sidebar">
+        <a href="/<%=user.uniqueusername%>/profile"><b><i class="fa fa-user" aria-hidden="true"></i> SHADEBOOK</b></a>
+        <a class="mylink" href="/<%=user.uniqueusername%>/profile">Profile</a>
+        <a class="mylink" href="/blogpost">Blog Posts</a>
+        <a class="mylink activeNav" href="/themes">Themes</a>
+        <a class="mylink" href="/settings">Settings</a>
+        <a class="mylink" href="/home/logout">Logout Now</a>
+      </div>
+
+
+  <!-- this will contain all the contents -->
+<div class="content container">
+        <div class="row">
+          <%for(let eachTheme of Themes.reverse()){%>
+              <div class="col-md-3 themeEachBox">
+                  <div>
+                    <form method="post">
+                      <img src="/Images/themes/<%=eachTheme.image%>" alt="theme photo" width="150px" height="150px"  style="margin-left:auto;margin-right:auto;display:block;">
+                      <div class="justify-content-center buttons_container" style="display:flex;">
+                        <%if(user.selectedtheme==eachTheme.themetitle){%>
+                            <button type="button" name="button" class="btn btn-sm btn-dark" disabled>Applied</i></button>
+                        <%}else{%>
+                            <button type="submit" name="button" formaction="/chooseTheme/<%=eachTheme._id%>" class="btn btn-sm btn-danger">Apply</i></button>
+                        <%}%>
+
+                      </div>
+                    </form>
+                  </div>
+              </div>
+            <%}%>
+        </div>
+</div>
+<!--end of content container-->
+
+  <script>
+
+  </script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+
+</html>

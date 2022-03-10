@@ -1,0 +1,225 @@
+body{
+  margin:0;
+  background: rgb(39,5,64);
+  background: linear-gradient(180deg, rgba(39,5,64,1) 0%, rgba(236,18,18,0.7820261893820029) 64%, rgba(232,138,6,1) 100%);
+
+}
+.allContainer{
+  min-height:768px;
+  /* background: rgb(175,174,184);
+   background: linear-gradient(0deg, rgba(175,174,184,1) 0%, rgba(5,5,5,1) 39%); */
+}
+.mainrow{
+  margin: 0;
+}
+.mainrow1
+{
+
+}
+.column1{
+  min-height:800px;
+  /* background-color: red; */
+}
+.column2{
+  min-height:800px;
+  /* background-color: yellow; */
+}
+.fullnameContainer{
+  /* background-color: green; */
+  min-height: 170px;
+}
+.fullnameContainer h1{
+  color:white;
+  font-size:4rem;
+}
+
+.bioContainer{
+  /* background-color: pink; */
+  border-left:3px solid white;
+  min-height: 170px;
+  padding-left: 20px;
+  padding-top: 20px;
+  padding-right: 20px;
+  position: relative;
+}
+
+.bioContainer hr{
+  position: absolute;
+  width:85%;
+  right: 15px;
+  bottom: 0;
+  border-width: 3px;
+  margin-top: 0;
+  margin-bottom: 0;
+  border-color:white;
+}
+
+.bioContainer p{
+  color:white;
+  font-size: 16px;
+}
+.bigImageContainer{
+  position: relative;
+}
+.bigImage{
+  transform: perspective(395px)rotateY(345deg);
+  margin-top: 100px;
+  border: 3px solid black;
+  border-radius: 5px;
+}
+
+.WorkView{
+  margin-top:30px;
+}
+
+.viewContainer{
+  min-height: 500px;
+  /* background-color: blue; */
+  border: 3px solid white;
+  border-radius: 10px;
+}
+
+.viewContainerOne{
+  margin-left: 15px;
+  padding-top: 30px;
+  text-align: center;
+}
+
+.viewContainerOne h3{
+  color:white;
+  margin-bottom: 50px;
+}
+
+.viewContainerTwo{
+  margin-right: 15px;
+  padding-top: 30px;
+  text-align: center;
+}
+
+.viewContainerTwo h3{
+  color:white;
+  margin-bottom: 50px;
+}
+.content{
+  min-height:340px;
+  height: 300px;
+  background-color: pink;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  border-radius: 10px;
+  padding:15px;
+}
+
+.content .row .col-md-6
+{
+  padding-left: 0;
+  padding-right:0;
+}
+/* Hide scrollbar for Chrome, Safari and Opera  for pastwork and featured photos */
+.content::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox for pastwork and featured photos */
+.content {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.eachFeaturedPhotoContainer{
+  padding: 10px;
+}
+.eachFeaturedPhotoContainer img{
+  border-radius: 10px;
+  transition: all 2s;
+}
+.eachFeaturedPhotoContainer img:hover{
+  transform: rotateY(180deg);
+}
+
+.pastWorkAllBox{
+  padding: 10px;
+  text-align: center;
+  position: relative;
+}
+
+ .pastWorkAllBox .button_div{
+  position: absolute;
+  top:60px;
+  left: 20px;
+  right: 20px;
+  opacity: 0;
+}
+
+  .pastWorkAllBox img:hover + .button_div{
+  opacity: 1;
+}
+.pastWorkAllBox .button_div:hover{
+  opacity: 1;
+}
+.linkContent form img{
+  border-radius: 10px;
+}
+.photoContent form img{
+  border-radius: 10px;
+}
+.videoContent form video{
+  border-radius: 10px;
+}
+
+/* SOCIAL LINKS CSS */
+
+.socialLinksBox{
+  background-color:rgba(255,255,255,0.7);
+  width: 80%;
+  box-shadow: 10px 10px 20px black;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.socialLinksBox a i{
+  color:#810000;
+  transition: all 1s;
+}
+
+.socialLinksBox a i:hover{
+  color:black;
+  transform:rotate(360deg);
+}
+
+
+/* blog css */
+.blogContainerMain{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  min-height: 300px;
+  background-color: rgba(255,255,255,0.3);
+  box-shadow: 10px 10px 20px black;
+  border-radius: 20px;
+}
+
+.blogContainer{
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.eachBlogPostContainer{
+  margin-top: 15px;
+  margin-bottom: 15px;
+  box-shadow: 5px 5px 10px black;
+  min-height: 100px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.eachPostBox{
+  padding: 20px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}

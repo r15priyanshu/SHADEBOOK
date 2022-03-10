@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Contact Us</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+  <style>
+    body{
+      background-image: url("/Images/contactUs.png");
+      background-position:center;
+      background-size:cover;
+      background-attachment: fixed;
+    }
+
+    .myinput{
+      border-radius: 15px;
+      margin-bottom:30px;
+    }
+  </style>
+
+</head>
+<body>
+  <div class="container">
+    <div class="row logincontainer justify-content-center align-items-center">
+      <div class="col-md-10 " style="margin-top: 100px;">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-md-6" style="text-align:center;">
+            <b><h1 style="color:white;font-family: 'Oswald', sans-serif;">Contact Us</h1></b>
+            <h6 style="color:white;margin-bottom:30px;">Don't hesitate to give us a call or just use the contact from below</h6>
+            <% if(success_msg!=""){ %>
+            <div class="alert alert-dismissible alert-success">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <strong><%=success_msg%></strong>
+            </div>
+            <%}%>
+
+            <form action="/home/contactUs" method="post">
+              <div class="form-group">
+                <input type="text" class="form-control myinput" name="fullname" placeholder="Name" required>
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control myinput" name="email" placeholder="Email" required>
+              </div>
+              <div class="form-group">
+                <textarea name="comments" class="form-control myinput" rows="4" cols="80" placeholder="Comments" required></textarea>
+              </div>
+              <div class="form-check" style="margin-bottom:10px;">
+                  <input class="form-check-input" type="checkbox" value="" id="mycheckbox" onchange="check()">
+                  <label class="form-check-label text-light" for="defaultCheck1">
+                    I have read and agree to the condition in <a href="/home/privacyPolicy" style="color:white;"><u>Privacy Policy</u></a> and <a href="/home/termsAndCondition" style="color:white;"><u>Terms & Conditions</u></a>.
+                  </label>
+              </div>
+              <button type="submit" id="sendButton" class="btn btn-outline-light btn-sm btn-block myinput" style="margin-bottom:30px;" disabled>SEND MESSAGE</button>
+              <a href="http://localhost:4000/" class="btn btn-sm btn-dark" style="margin-bottom:20px;">GO BACK TO HOMEPAGE</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+  <script type="text/javascript">
+    function check(){
+      if(document.getElementById("mycheckbox").checked==true){
+        document.getElementById("sendButton").disabled=false;
+      }else{
+        document.getElementById("sendButton").disabled=true;
+      }
+    }
+  </script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+
+</html>
